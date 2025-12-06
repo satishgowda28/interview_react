@@ -1,0 +1,120 @@
+{
+  "name": "root",
+  "type": "directory",
+  "children": [
+    {
+      "name": "projects",
+      "type": "directory",
+      "children": [
+        {
+          "name": "frontend",
+          "type": "directory",
+          "children": [
+            {
+              "name": "portfolio-website",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "index.html",
+                  "type": "file"
+                },
+                {
+                  "name": "app.js",
+                  "type": "file"
+                },
+                {
+                  "name": "styles.css",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "backend",
+          "type": "directory",
+          "children": [
+            {
+              "name": "api-server",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "main.go",
+                  "type": "file"
+                },
+                {
+                  "name": "config.json",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "reports",
+      "type": "directory",
+      "children": [
+        {
+          "name": "2024",
+          "type": "directory",
+          "children": [
+            {
+              "name": "annual-summary.pdf",
+              "type": "file"
+            },
+            {
+              "name": "sales-data.xlsx",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "2025",
+          "type": "directory",
+          "children": [
+            {
+              "name": "q1-overview.pdf",
+              "type": "file"
+            },
+            {
+              "name": "budget-plan.docx",
+              "type": "file"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "photos",
+      "type": "directory",
+      "children": [
+        {
+          "name": "vacation",
+          "type": "directory",
+          "children": [
+            {
+              "name": "paris.jpg",
+              "type": "file"
+            },
+            {
+              "name": "bali.png",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "family",
+          "type": "directory",
+          "children": [
+            {
+              "name": "birthday.jpg",
+              "type": "file"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
