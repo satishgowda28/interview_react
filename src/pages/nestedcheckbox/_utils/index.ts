@@ -16,6 +16,7 @@ export function runNormalize(data: Node[]) {
       flatData[obj.id] = {
         id: obj.id,
         checked: false,
+        indeterminate: false,
         label: obj.label,
         parent: parentId || null,
       };

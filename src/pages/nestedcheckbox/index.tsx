@@ -110,18 +110,17 @@ const NestedCheckbox = () => {
     const childrens = parentChildRel[parentId];
     if (childrens) {
       let allChecked = true;
+      // let anyIndetmined = false;
       for (let child of childrens) {
-        if (child !== idx) {
-          if (!tempObj[child].checked) {
-            allChecked = false;
-            break;
-          }
+        if (!tempObj[child].checked) {
+          allChecked = false;
         }
       }
       if (allChecked) {
         tempObj[parentId].checked = value;
         return checkParent(parentId, value, { ...tempObj });
       }
+
       return tempObj;
     }
   };
