@@ -100,37 +100,35 @@ const NestedCheckbox = () => {
   };
   const checkParent = (idx: number, value: boolean, tempObj: CheckboxData) => {
     const parentId = tempObj[idx].parent;
-    debugger;
-    if (parentId) {
-      if (!value) {
-        tempObj[parentId].checked = value;
-        tempObj = {
-          ...tempObj,
-          ...checkParent(parentId, value, { ...tempObj }),
-        };
-      } else {
-        const childrens = parentChildRel[parentId];
-        if (childrens) {
-          let allChecked = true;
-          for (let child of childrens) {
-            if (child !== idx) {
-              if (!tempObj[child].checked) {
-                allChecked = false;
-                break;
-              }
+    if (parentId === null) {
+      return tempObj;
+    }
+    if (!value) {
+      tempObj[parentId].checked = value;
+      tempObj = {
+        ...tempObj,
+        ...checkParent(parentId, value, { ...tempObj }),
+      };
+    } else {
+      const childrens = parentChildRel[parentId];
+      if (childrens) {
+        let allChecked = true;
+        for (let child of childrens) {
+          if (child !== idx) {
+            if (!tempObj[child].checked) {
+              allChecked = false;
+              break;
             }
           }
-          if (allChecked) {
-            tempObj[parentId].checked = value;
-            tempObj = {
-              ...tempObj,
-              ...checkParent(parentId, value, { ...tempObj }),
-            };
-          }
+        }
+        if (allChecked) {
+          tempObj[parentId].checked = value;
+          tempObj = {
+            ...tempObj,
+            ...checkParent(parentId, value, { ...tempObj }),
+          };
         }
       }
-    } else {
-      return tempObj;
     }
     return tempObj;
   };
