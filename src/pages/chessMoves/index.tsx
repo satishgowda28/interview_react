@@ -5,28 +5,56 @@ import {
   type CSSProperties,
   type MouseEvent,
 } from "react";
-import { createBoard } from "./_utils";
+import { createBoard, directions, isValid } from "./_utils";
 
 const ChessMoves = () => {
   const [boardArray, setBoardArray] = useState(() => createBoard());
   const elemRef = useRef<Array<Array<HTMLDivElement>>>([]);
+  const picesMoves = useRef(directions.rook);
   const handleMouseEnter = (rowCol: [number, number]) => {
     return (e: MouseEvent<HTMLDivElement>) => {
       if (elemRef.current.length) {
-        const [row, col] = rowCol;
+        const [col, row] = rowCol;
         const elem = elemRef.current[row][col];
         elem.setAttribute("data-hover", "true");
+        console.log([row, col]);
+        const moves = getMoves(col, row);
+        for (let move of moves) {
+          const [x, y] = move;
+          const cell = elemRef.current[y][x];
+          cell.style.border = "1px solid red";
+        }
       }
     };
   };
   const handleMousLeave = (rowCol: [number, number]) => {
     return (_e: MouseEvent<HTMLDivElement>) => {
       if (elemRef.current.length) {
-        const [row, col] = rowCol;
+        const [col, row] = rowCol;
         const elem = elemRef.current[row][col];
         elem.setAttribute("data-hover", "false");
       }
     };
+  };
+  const getMoves = (...plPos: [number, number]) => {
+    const directions = picesMoves.current;
+    const [pX, pY] = plPos;
+    let moves = [];
+    for (let dir of directions) {
+      const [dX, dY] = dir;
+      let nX = pX + dX;
+      let nY = pY - dY;
+      console.log(dir, pX, pY, nX, nY);
+      console.log(isValid(nX, nY));
+
+      // moves.push([nY, currY]);
+      while (isValid(nX, nY)) {
+        moves.push([nX, nY]);
+        nX += dX;
+        nY -= dY;
+      }
+    }
+    return moves;
   };
   useEffect(() => {
     console.log(elemRef.current);
@@ -43,8 +71,8 @@ const ChessMoves = () => {
             className="w-[40px] h-[40px] border data-[even=true]:bg-[#f0d9b5] data-[even=false]:bg-[#b58863] data-[hover=true]:bg-[#87cefa] data-[hover=true]:shadow-[inset_0_0_0_3px_#3b82f6]"
             data-even={(i + j) % 2 === 0}
             data-hover={false}
-            onMouseEnter={handleMouseEnter([i, j])}
-            onMouseLeave={handleMousLeave([i, j])}
+            onMouseEnter={handleMouseEnter([j, i])}
+            onMouseLeave={handleMousLeave([j, i])}
             ref={(elem) => {
               if (!elemRef.current[i]) {
                 elemRef.current[i] = [];
