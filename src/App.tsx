@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Route, Routes } from "react-router";
 import IndexPage from "./pages";
 import AutoCompleteInput from "./pages/automcomplete";
+import ChessMoves from "./pages/chessMoves";
 import FolderStruct from "./pages/folderStruct";
 import InteractiveShape from "./pages/interactiveShape";
 import NestedCheckbox from "./pages/nestedcheckbox";
@@ -26,6 +27,7 @@ function App() {
             <Route path="/autocomplete" element={<AutoCompleteInput />} />
             <Route path="/otpio" element={<OTPWrapper />} />
             <Route path="/nestedcheckbox" element={<NestedCheckbox />} />
+            <Route path="/chessmoves" element={<ChessMoves />} />
           </Route>
         </Routes>
       </QueryClientProvider>
