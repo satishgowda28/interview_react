@@ -11,7 +11,7 @@ export const isValid = (...cords: [number, number]): boolean => {
   return x >= 0 && x <= BOARD_WIDTH - 1 && y >= 0 && y <= BOARD_HEIGHT - 1;
 };
 
-export const directions = {
+export const directions: Record<string, number[][]> = {
   bishop: [
     [1, 1],
     [1, -1],

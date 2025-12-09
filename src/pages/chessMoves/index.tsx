@@ -8,10 +8,19 @@ import {
 import { createBoard, directions, isValid } from "./_utils";
 
 const ChessMoves = () => {
-  const [boardArray, setBoardArray] = useState(() => createBoard());
+  const [boardArray, _] = useState(() => createBoard());
+  const [picesMoves, setPicesMoves] = useState(() => directions.rook);
+
   const elemRef = useRef<Array<Array<HTMLDivElement>>>([]);
   const moveToHightlight = useRef<Array<number[]>>([]);
-  const picesMoves = useRef(directions.rook);
+  const list = useRef(Object.keys(directions));
+
+  /* Effects */
+  useEffect(() => {
+    console.log(elemRef.current);
+  }, []);
+
+  /* functions */
   const handleMouseEnter = (rowCol: [number, number]) => {
     return (e: MouseEvent<HTMLDivElement>) => {
       if (elemRef.current.length) {
@@ -46,7 +55,7 @@ const ChessMoves = () => {
     };
   };
   const getMoves = (...plPos: [number, number]) => {
-    const directions = picesMoves.current;
+    const directions = picesMoves;
     const [pX, pY] = plPos;
     let moves = [];
     for (let dir of directions) {
@@ -65,34 +74,49 @@ const ChessMoves = () => {
     }
     return moves;
   };
-  useEffect(() => {
-    console.log(elemRef.current);
-  }, []);
+
   return (
-    <div
-      className="grid grid-cols-[repeat(var(--width),40px)] grid-rows-[repeat(var(--width),40px)] border-2 border-black shadow-[0_0_10px_rgba(255,255,255,30%)]"
-      style={{ "--width": boardArray.length } as CSSProperties}
-    >
-      {boardArray.map((row, i) =>
-        row.map((_, j) => (
-          <div
-            key={`${i}_${j}`}
-            className="w-[40px] h-[40px] border data-[even=true]:bg-[#f0d9b5] data-[even=false]:bg-[#b58863] data-[hover=true]:bg-[#87cefa] data-[hover=true]:shadow-[inset_0_0_0_3px_#3b82f6] data-[hightlight=true]:bg-[#4682b4]"
-            data-even={(i + j) % 2 === 0}
-            data-hover={false}
-            data-hightlight={false}
-            onMouseEnter={handleMouseEnter([j, i])}
-            onMouseLeave={handleMousLeave([j, i])}
-            ref={(elem) => {
-              if (!elemRef.current[i]) {
-                elemRef.current[i] = [];
-              }
-              elemRef.current[i][j] = elem!;
-            }}
-          />
-        ))
-      )}
-    </div>
+    <>
+      <div className="mb-4">
+        <select
+          onChange={(e) => {
+            const str = e.target.value;
+            setPicesMoves(directions[str]);
+          }}
+        >
+          {list.current.map((txt, i) => (
+            <option
+              key={`${txt}_${i}`}
+              value={txt}
+            >{`${txt[0].toUpperCase()}${txt.slice(1)}`}</option>
+          ))}
+        </select>
+      </div>
+      <div
+        className="grid grid-cols-[repeat(var(--width),40px)] grid-rows-[repeat(var(--width),40px)] border-2 border-black shadow-[0_0_10px_rgba(255,255,255,30%)]"
+        style={{ "--width": boardArray.length } as CSSProperties}
+      >
+        {boardArray.map((row, i) =>
+          row.map((_, j) => (
+            <div
+              key={`${i}_${j}`}
+              className="w-[40px] h-[40px] border data-[even=true]:bg-[#f0d9b5] data-[even=false]:bg-[#b58863] data-[hover=true]:bg-[#87cefa] data-[hover=true]:shadow-[inset_0_0_0_3px_#3b82f6] data-[hightlight=true]:bg-[#4682b4]"
+              data-even={(i + j) % 2 === 0}
+              data-hover={false}
+              data-hightlight={false}
+              onMouseEnter={handleMouseEnter([j, i])}
+              onMouseLeave={handleMousLeave([j, i])}
+              ref={(elem) => {
+                if (!elemRef.current[i]) {
+                  elemRef.current[i] = [];
+                }
+                elemRef.current[i][j] = elem!;
+              }}
+            />
+          ))
+        )}
+      </div>
+    </>
   );
 };
 
