@@ -20,3 +20,5 @@ export const searchRecepies = async (q: string): Promise<RecepiesResponse> => {
     return Promise.reject(errMsg);
   }
 };
+
+export const apiForDummyJSON = api;
