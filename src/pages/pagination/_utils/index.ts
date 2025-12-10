@@ -1,12 +1,13 @@
+import { THRESHOLD } from "../const";
+
 export const generatePages = (currPage: number, totalPages: number) => {
   let pages = [];
-  const threshold = 10;
   pages.push(1);
 
   let start = 2;
-  let end = threshold;
+  let end = THRESHOLD;
 
-  if (currPage > threshold) {
+  if (currPage >= THRESHOLD) {
     pages.push(-1);
     start = currPage - 5;
     end = Math.min(currPage + 4, totalPages - 1);

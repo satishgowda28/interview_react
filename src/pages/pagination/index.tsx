@@ -25,7 +25,23 @@ const Pagination = () => {
         ))}
       </div>
       <div className="mt-10">
-        <button onClick={() => changePage((prev) => prev + 1)}>NEXT</button>
+        <ul className="flex space-x-2 justify-center">
+          {pagesNumber.map((num) => (
+            <li
+              className="p-2.5 py-1 min-w-[40px] border data-[active=true]:bg-white data-[active=true]:text-black data-[filler=true]:border-0 cursor-pointer data-[filler=true]:cursor-auto"
+              data-active={currPage === num}
+              data-filler={num < 0}
+              key={num}
+              onClick={() => {
+                if (!(num < 0)) {
+                  changePage(num);
+                }
+              }}
+            >
+              {num < 0 ? "..." : num}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
