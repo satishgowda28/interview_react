@@ -1,6 +1,4 @@
-const totalPages = 40;
-let currPage = 1;
-export const generatePages = () => {
+export const generatePages = (currPage: number, totalPages: number) => {
   let pages = [];
   const threshold = 10;
   pages.push(1);

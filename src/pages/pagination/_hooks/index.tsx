@@ -10,5 +10,7 @@ const useGetProducts = (initPage: number = 0) => {
     enabled: !!currPage,
   });
 
-  return { changePage: setPage, queryProducts };
+  return { currPage, changePage: setPage, queryProducts };
 };
+
+export default useGetProducts;

@@ -76,7 +76,7 @@ const ChessMoves = () => {
   };
 
   return (
-    <>
+    <div className="place-items-center py-10">
       <div className="mb-4">
         <select
           onChange={(e) => {
@@ -116,7 +116,7 @@ const ChessMoves = () => {
           ))
         )}
       </div>
-    </>
+    </div>
   );
 };
 

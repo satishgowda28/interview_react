@@ -5,14 +5,15 @@ import type { ProductsResponse } from "../_types";
 export const getProducts = async (
   currPage: number
 ): Promise<ProductsResponse> => {
-  const limit = 10;
+  const limit = 12;
   try {
-    const { data } = await apiForDummyJSON.get<ProductsResponse>(
-      "/recipes/search",
-      {
-        params: { limit, skip: currPage + limit, select: "price,title,image" },
-      }
-    );
+    const { data } = await apiForDummyJSON.get<ProductsResponse>("/products", {
+      params: {
+        limit,
+        skip: (currPage - 1) * limit,
+        select: "price,title,images",
+      },
+    });
     // return (await response).data;
     return data || [];
   } catch (err) {

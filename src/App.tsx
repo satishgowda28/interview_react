@@ -8,6 +8,7 @@ import InteractiveShape from "./pages/interactiveShape";
 import NestedCheckbox from "./pages/nestedcheckbox";
 import OTPWrapper from "./pages/otp";
 import OverLappingCircles from "./pages/overlappingCircles";
+import Pagination from "./pages/pagination";
 import Root from "./pages/rootLayout";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ function App() {
             <Route path="/otpio" element={<OTPWrapper />} />
             <Route path="/nestedcheckbox" element={<NestedCheckbox />} />
             <Route path="/chessmoves" element={<ChessMoves />} />
+            <Route path="/pagination" element={<Pagination />} />
           </Route>
         </Routes>
       </QueryClientProvider>
