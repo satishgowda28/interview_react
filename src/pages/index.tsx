@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import "../App.css";
 import reactLogo from "../assets/react.svg";
 import viteLogo from "/vite.svg";
 
 const IndexPage = () => {
   const [count, setCount] = useState(0);
+
+  const mouseOverEvent = (e: MouseEvent) => {
+    console.log(e.currentTarget);
+    console.log(e.target);
+  };
+  const mouseEnterEvent = (e: MouseEvent) => {
+    console.log(e.currentTarget);
+    console.log(e.target);
+  };
   return (
     <>
       <div>
@@ -27,6 +36,18 @@ const IndexPage = () => {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+      <div
+        className="w-[300px] h-[300px] border border-white relative"
+        onMouseOver={mouseOverEvent}
+        // onMouseEnter={mouseEnterEvent}
+      >
+        <div
+          className="absolute w-10 h-10 border border-green-600 left-0 top-0"
+          onMouseOver={mouseOverEvent}
+          // onMouseEnter={mouseEnterEvent}
+        ></div>
+      </div>
     </>
   );
 };

@@ -10,6 +10,7 @@ import OTPWrapper from "./pages/otp";
 import OverLappingCircles from "./pages/overlappingCircles";
 import Pagination from "./pages/pagination";
 import Root from "./pages/rootLayout";
+import Typewriter from "./pages/typewriter";
 
 const queryClient = new QueryClient();
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route path="/nestedcheckbox" element={<NestedCheckbox />} />
             <Route path="/chessmoves" element={<ChessMoves />} />
             <Route path="/pagination" element={<Pagination />} />
+            <Route path="/typewriter" element={<Typewriter />} />
           </Route>
         </Routes>
       </QueryClientProvider>

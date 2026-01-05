@@ -1,0 +1,2 @@
+export const TEXT =
+  "The quiet morning air carried the soft hum of distant traffic as sunlight slipped through half-open windows. A cup of coffee rested on the desk, slowly cooling, while unfinished ideas waited patiently on the screen. Every keystroke felt deliberate, as if each word mattered just a little more than the last. Somewhere between mistakes and corrections, progress quietly took shape.";
