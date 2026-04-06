@@ -22,15 +22,17 @@ function App() {
             <Route index element={<IndexPage />} />
             <Route path="/folderStruct" element={<FolderStruct />} />
             <Route path="/interactiveShape" element={<InteractiveShape />} />
-            <Route
-              path="/overlappingCircles"
-              element={<OverLappingCircles />}
-            />
             <Route path="/autocomplete" element={<AutoCompleteInput />} />
             <Route path="/otpio" element={<OTPWrapper />} />
             <Route path="/nestedcheckbox" element={<NestedCheckbox />} />
             <Route path="/chessmoves" element={<ChessMoves />} />
             <Route path="/pagination" element={<Pagination />} />
+            
+            {/* WIP routes */}
+            <Route
+              path="/overlappingCircles"
+              element={<OverLappingCircles />}
+            />
             <Route path="/typewriter" element={<Typewriter />} />
           </Route>
         </Routes>
