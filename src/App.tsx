@@ -6,6 +6,7 @@ import ChessMoves from "./pages/chessMoves";
 import FolderStruct from "./pages/folderStruct";
 import InteractiveShape from "./pages/interactiveShape";
 import NestedCheckbox from "./pages/nestedcheckbox";
+import NestedComponent from "./pages/nestedComments";
 import OTPWrapper from "./pages/otp";
 import OverLappingCircles from "./pages/overlappingCircles";
 import Pagination from "./pages/pagination";
@@ -34,6 +35,7 @@ function App() {
               element={<OverLappingCircles />}
             />
             <Route path="/typewriter" element={<Typewriter />} />
+            <Route path="/nestedcomponent" element={<NestedComponent/> } />
           </Route>
         </Routes>
       </QueryClientProvider>

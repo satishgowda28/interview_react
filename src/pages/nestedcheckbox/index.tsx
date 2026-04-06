@@ -60,6 +60,7 @@ const NestedCheckbox = () => {
     const { rootIds, parentChild, flatData } = runNormalize(
       checkboxData as Node[]
     );
+    console.log({rootIds, parentChild, flatData})
     setRootIds(rootIds);
     setParentChildRel(parentChild);
     setAllData(flatData);

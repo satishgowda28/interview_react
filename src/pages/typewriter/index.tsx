@@ -7,7 +7,7 @@ const initalText = TEXT.split("").map((char) => ({
   char: char,
   status: TEXT_STATUS.UNTYPED,
 }));
-console.log(initalText);
+// console.log(initalText);
 const Typewriter = () => {
   const [textArray, setTextArray] = useState(() => initalText);
   const [inputValue, setInputValue] = useState("");
