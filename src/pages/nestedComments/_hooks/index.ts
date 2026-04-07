@@ -1,4 +1,6 @@
 import { useReducer } from "react";
+import { comments } from "../_data";
+import { normalizeData } from "../_utils";
 import { AcType, type Actions, type CommentState } from "../types";
 
 function reducerFunc(state: CommentState, action: Actions): CommentState {
@@ -24,12 +26,24 @@ function reducerFunc(state: CommentState, action: Actions): CommentState {
       return state;
   }
 }
+function init(): CommentState {
+  const { rootId, rootData, parentChild } = normalizeData(comments);
+  return {
+    rootIds: rootId,
+    parentChild: parentChild,
+    allComments: rootData,
+  } as CommentState;
+}
 const useHandleCommentState = () => {
-  return useReducer(reducerFunc, {
-    rootIds: [],
-    parentChild: {},
-    allComments: {},
-  } as CommentState);
+  return useReducer(
+    reducerFunc,
+    {
+      rootIds: [],
+      parentChild: {},
+      allComments: {},
+    } as CommentState,
+    init,
+  );
 };
 
 export default useHandleCommentState;

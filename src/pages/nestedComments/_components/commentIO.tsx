@@ -8,15 +8,15 @@ interface InputType {
 
 const CommentInput = ({ parentId }: InputType) => {
   const [text, setText] = useState("");
-  const [state, dispatch] = useCommentContext();
+  const [_, dispatch] = useCommentContext();
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const id = Math.ceil(Date.now() + Math.random());
-    console.log(text);
+    const id = Date.now();
     dispatch({
       type: AcType.addComment,
       payload: { comment: { id, text: text }, parentId: parentId ?? null },
     });
+    setText("");
   };
   return (
     <div className="w-full">

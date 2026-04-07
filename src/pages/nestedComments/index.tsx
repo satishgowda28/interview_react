@@ -1,10 +1,6 @@
-import { useEffect } from "react";
 import Comment from "./_components/comment";
 import CommentInput from "./_components/commentIO";
 import { CommentProvider, useCommentContext } from "./_context";
-import { comments } from "./_data";
-import { normalizeData } from "./_utils";
-import { AcType } from "./types";
 
 const NestedWrapper = () => {
   return (
@@ -15,18 +11,18 @@ const NestedWrapper = () => {
 };
 
 const NestedComponent = () => {
-  const [state, dispatch] = useCommentContext();
-  useEffect(() => {
-    const { rootId, rootData, parentChild } = normalizeData(comments);
-    dispatch({
-      type: AcType.init,
-      payload: {
-        rootIds: rootId,
-        parentChild: parentChild,
-        allComments: rootData,
-      },
-    });
-  }, []);
+  const [state, _] = useCommentContext();
+  // useEffect(() => {
+  //   const { rootId, rootData, parentChild } = normalizeData(comments);
+  //   dispatch({
+  //     type: AcType.init,
+  //     payload: {
+  //       rootIds: rootId,
+  //       parentChild: parentChild,
+  //       allComments: rootData,
+  //     },
+  //   });
+  // }, []);
   return (
     <div className="w-[800px] flex flex-col items-start">
       <CommentInput></CommentInput>
