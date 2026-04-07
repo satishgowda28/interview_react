@@ -1,10 +1,22 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useCommentContext } from "../_context";
+import { AcType } from "../types";
 
-const CommentInput = () => {
+interface InputType {
+  parentId?: number;
+}
+
+const CommentInput = ({ parentId }: InputType) => {
   const [text, setText] = useState("");
+  const [state, dispatch] = useCommentContext();
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    const id = Math.ceil(Date.now() + Math.random());
     console.log(text);
+    dispatch({
+      type: AcType.addComment,
+      payload: { comment: { id, text: text }, parentId: parentId ?? null },
+    });
   };
   return (
     <div className="w-full">

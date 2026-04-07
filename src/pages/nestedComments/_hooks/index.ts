@@ -12,7 +12,7 @@ function reducerFunc(state: CommentState, action: Actions): CommentState {
         ...state,
         allComments: { ...state.allComments, [comment.id]: comment },
         rootIds: [...state.rootIds, ...(isRoot ? [comment.id] : [])],
-        parentChild: !isRoot
+        parentChild: isRoot
           ? state.parentChild
           : {
               ...state.parentChild,

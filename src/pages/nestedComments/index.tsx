@@ -1,17 +1,24 @@
 import { useEffect } from "react";
 import Comment from "./_components/comment";
 import CommentInput from "./_components/commentIO";
+import { CommentProvider, useCommentContext } from "./_context";
 import { comments } from "./_data";
-import useHandleCommentState from "./_hooks";
 import { normalizeData } from "./_utils";
 import { AcType } from "./types";
 
+const NestedWrapper = () => {
+  return (
+    <CommentProvider>
+      <NestedComponent></NestedComponent>
+    </CommentProvider>
+  );
+};
+
 const NestedComponent = () => {
-  const [state, dispath] = useHandleCommentState();
+  const [state, dispatch] = useCommentContext();
   useEffect(() => {
     const { rootId, rootData, parentChild } = normalizeData(comments);
-    console.log({ rootId, rootData, parentChild });
-    dispath({
+    dispatch({
       type: AcType.init,
       payload: {
         rootIds: rootId,
@@ -24,12 +31,12 @@ const NestedComponent = () => {
     <div className="w-[800px] flex flex-col items-start">
       <CommentInput></CommentInput>
       <div className="w-full">
-        {state.rootIds.map(() => (
-          <Comment />
+        {state.rootIds.map((ids) => (
+          <Comment commentID={ids} key={ids} />
         ))}
       </div>
     </div>
   );
 };
 
-export default NestedComponent;
+export default NestedWrapper;
